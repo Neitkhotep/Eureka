@@ -247,7 +247,12 @@ open class _TextAreaCell<T> : Cell<T>, UITextViewDelegate, AreaCell where T: Equ
     open func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         return formViewController()?.textInputShouldEndEditing(textView, cell: self) ?? true
     }
-
+    
+    @available(iOSApplicationExtension 10.0, *)
+    open func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return false
+    }
+    
     open override func updateConstraints() {
         customConstraints()
         super.updateConstraints()
